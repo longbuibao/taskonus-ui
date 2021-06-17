@@ -9,4 +9,8 @@ router.get('/ui/login', (_, res) => {
     res.render('login')
 })
 
+router.get('/ui/user', (_, res) => {
+    res.render('user')
+})
+
 module.exports = router
