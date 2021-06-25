@@ -13,4 +13,11 @@ router.get('/ui/user', (_, res) => {
     res.render('user')
 })
 
+router.get('/ui/noTask', (_, res) => {
+    res.render('noTask')
+})
+
+router.get('/ui/introPage', (_, res) => {
+    res.render('introPage')
+})
 module.exports = router
