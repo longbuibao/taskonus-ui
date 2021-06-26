@@ -1,7 +1,7 @@
 @charset "utf-8";
 body {
     margin: 0;
-    font-family:'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -10,8 +10,9 @@ body {
 }
 
 .notion-app {
-	display: flex;
+    display: flex;
 }
+
 .control {
     position: relative;
     z-index: 99;
@@ -19,8 +20,9 @@ body {
     transition: box-shadow 300ms ease-in 0s;
     width: 240px;
 }
+
 .detail {
-	flex-grow: 1;
+    flex-grow: 1;
     flex-shrink: 1;
     display: flex;
     flex-direction: column;
@@ -30,16 +32,18 @@ body {
     max-height: 100%;
     width: 771px;
 }
-.control .i-user{
-	display: flex;
+
+.control .i-user {
+    display: flex;
     align-items: center;
     margin-bottom: 12px;
     background-color: #ECDDD7;
     padding: 8px 16px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-.thumb{
-	width: 50px;
+
+.thumb {
+    width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: #B22222;
@@ -47,11 +51,12 @@ body {
     background-size: cover;
     margin-right: 12px;
 }
-.control .se-fi{
-	margin: 25px 8px;
+
+.control .se-fi {
+    margin: 25px 8px;
 }
 
-.control .favorite{
+.control .favorite {
     display: flex;
     /* align-items: center; */
     margin-bottom: 12px;
@@ -60,52 +65,52 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.control .favorite .fa-star{
+.control .favorite .fa-star {
     color: #FEBF10;
     font-size: 20px;
 }
 
-.control .favorite h5{
+.control .favorite h5 {
     margin: 0 10px;
 }
 
-.control .board{
+.control .board {
     display: flex;
-    margin:100px 0;
+    margin: 100px 0;
     background-color: #ECDDD7;
     padding: 8px 16px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.control .board .fa-clipboard-list{
+.control .board .fa-clipboard-list {
     color: brown;
     font-size: 23px;
-    
 }
 
-.control .board h5{
+.control .board h5 {
     margin: 0 10px;
     flex: 1;
 }
 
-.control .board .fa-plus{
+.control .board .fa-plus {
     color: #212529;
     font-size: 25px;
-    
 }
 
 
 /* **********************USER ******************* */
-.head-user{
+
+.head-user {
     margin-top: 90px;
     margin-left: 390px;
 }
 
-.h-user{
+.h-user {
     display: flex;
 }
-.h-user .u-thumb{
-	width: 50px;
+
+.h-user .u-thumb {
+    width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: #B22222;
@@ -113,11 +118,12 @@ body {
     background-size: cover;
     margin-right: 12px;
 }
-.h-user h5{
+
+.h-user h5 {
     margin-bottom: 0;
 }
 
-.user-detail{
+.user-detail {
     position: absolute;
     width: 550px;
     height: 300px;
@@ -130,15 +136,36 @@ body {
 
 .user-name,
 .email,
-.password{
+.password {
     display: flex;
     justify-content: space-between;
     margin: 30px 50px;
 }
- /********* modal layout **********/
-.modal{
-    background: rgba(15, 15, 15, 0.6); 
+
+
+/********* modal layout **********/
+
+.modal {
+    background: rgba(15, 15, 15, 0.6);
 }
-.modal .modal-content{
+
+.modal .modal-content {
     margin-top: 200px;
+}
+
+
+/* ========================================tasks============================================ */
+
+.date-created {
+    display: flex;
+    align-items: center;
+    font-weight: lighter;
+}
+
+.date-created h4 {
+    margin-bottom: unset;
+}
+
+hr.style1 {
+    border-top: 1px solid #8c8b8b;
 }
