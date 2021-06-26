@@ -11,4 +11,4 @@ app.use(express.static(path.join(__dirname, '/public')))
 
 app.use(uiRouter)
 
-app.listen(3001)
+app.listen(3000)

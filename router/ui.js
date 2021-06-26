@@ -20,4 +20,9 @@ router.get('/ui/noTask', (_, res) => {
 router.get('/ui/introPage', (_, res) => {
     res.render('introPage')
 })
+
+router.get('/ui/tasks', (_, res) => {
+    res.render('mytasks')
+})
+
 module.exports = router
