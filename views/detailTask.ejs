@@ -1,0 +1,206 @@
+<%- include('partials/detailtaskHeader.ejs') %>
+<div class="notion-app">
+    <!-- beign control -->
+    <div class="control">
+        <!-- account -->
+      <div class="i-user">
+            <div class="thumb"></div>
+            <div class="u-name">KTW</div>
+      </div>
+      <!-- search-filter -->
+      <div class="se-fi">
+        <div class="form-group">
+            <div class="btn-group">
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Tìm kiếm nhanh">
+                <div class="btn btn-info">Tìm</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <select class="custom-select" required>
+                <option selected>Thứ tự mặc định</option>
+                <option value="1">Nhiệm vụ đã hoàn thành</option>
+                <option value="2">Thứ tự từ cũ đến mới</option>
+                <option value="3">Thứ tự từ mới đến cũ</option>
+            </select>
+        </div>
+      </div>
+      <!-- favorite -->
+      <div class="favorite">
+        <i class="fa fa-star"></i>
+        <h5>Yêu thích</h5>
+      </div>
+
+      <!-- board -->
+      <div class="board">
+        <i class="fa fa-clipboard-list"></i>
+        <h5>Bảng của tôi</h5>
+        <i class="fa fa-plus"></i>
+      </div>
+    </div>
+
+
+<!-- begin-detail -->
+    <div class="detail">
+  <div class="overlay" style="display: none; position: fixed; top:0; right: 0; left: 0; bottom: 0; background-color:rgba(255,255,255,0); z-index: 0;"></div>
+
+        <!--Đầu trang kế hoạch thiết kế-->
+ <div class="kehoachthietke">
+
+   <div> 
+     <h2> Kế hoạch thiết kế</h2>
+     <p> Ngày tạo: 30/05/2021 10:25</p>
+   </div>
+   <div class="timkiem">
+     <input type="text" placeholder="Tìm kiếm">
+   </div>
+ </div>
+
+     <!--Nội dung kế hoach thiết kế-->
+<div class="noi-dung-ke-hoach-thiet-ke">
+   <!--cần làm-->
+   
+<div class="thu-muc">       <!--thư mục-->
+ 
+<div class="style-button" style="position: relative; z-index: 1000;">  
+<div class="button">Cần làm</div>
+<p class="icon">
+     <p class="fix-icon"> <i class="plus-can-lam fas fa-ellipsis-h"></i> </p>
+     <p class="fix-icon-add"> <i class=" fas fa-plus-circle"></i> </p>
+</p>
+<!-- popup mục cần làm -->
+<div class="popup-can-lam" style="display: none; background-color: antiquewhite; position:absolute; top: 30px; right: -45px; margin:5px; padding: 10px; z-index: 1111;">
+  <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Xóa</p>
+  <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Đổi tên</p>
+</div>
+
+<script>
+  var popup_plus_can_lam=document.querySelector(".plus-can-lam");
+  popup_plus_can_lam.onclick=function (){
+    document.querySelector(".popup-can-lam").style.display="";
+    overlay.style.display="";
+
+  };      
+</script>
+</div>
+
+<div class="tien-do-ke-hoach">      <!--tiến độ kế hoạch-->
+
+  <div class="muc-ke-hoach">     <!--mục kế hoạch của mục Làm ĐN-ĐK-->
+    <div class="style-DN-DK">   
+        <h5> Làm ĐN-ĐK</h5>
+        <div class="fas-fa-ellipsis-h"> <i class=" fas fa-ellipsis-h"></i> </div>
+    </div>
+    <div class="far-fa-comment-alt"> <i class="far fa-comment-alt"></i> </div>
+  </div>
+  
+  <div class="muc-ke-hoach">     <!--mục kế hoạch của mục Trang giới thiệu-->
+    <div class="style-trang-gioi-thieu">    
+        <h5> Trang giới thiệu</h5>
+        <div class="fas-fa-ellipsis-h" id="fix"> <i class="fas fa-ellipsis-h"></i> </div>
+    </div>
+    <div class="far-fa-comment-alt"> <i class="far fa-comment-alt"></i> </div>
+  </div>
+
+</div>
+</div> <!-- đóng-cần làm-->
+
+   <!--đang làm-->
+<div class="thu-muc">
+  
+  <div class="style-button" style="position: relative; z-index: 1000;">
+    <div class="button">Đang làm</div>
+  <p class="icon">
+      <p class="fix-icon"><i class="plus-dang-lam fas fa-ellipsis-h"></i></p>
+      <p class="fix-icon-add"><i class=" fas fa-plus-circle"></i></p>
+  </p>
+  <!-- popup mục đang làm -->
+<div class="popup-dang-lam" style="display: none; background-color: antiquewhite; position:absolute; top: 30px; right: -45px; margin:5px; padding: 10px; z-index: 1111;">
+  <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Xóa</p>
+  <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Đổi tên</p>
+</div>
+
+<script>
+  var popup_plus_dang_lam=document.querySelector(".plus-dang-lam");
+  
+  popup_plus_dang_lam.onclick=function (){
+    document.querySelector(".popup-dang-lam").style.display="";
+    overlay.style.display="";
+  };
+ 
+</script>
+</div>
+
+<div class="tien-do-ke-hoach">   <!--tiến độ kế hoạch-->
+  <div class="muc-ke-hoach">     <!--mục kế hoạch của mục Thao tác với bảng-->
+    <div class="style-thao-tac">   
+        <h5> Thao tác với bảng</h5>
+        <div class="fas-fa-ellipsis-h" id="fix-muc-dang-lam"> <i class="fas fa-ellipsis-h"></i> </div> <!--fix mục đang làm-->
+    </div>
+    <div class="far-fa-comment-alt"> <i class="far fa-comment-alt"></i> </div>
+  </div>
+</div>
+</div><!--đóng-đang làm-->
+
+
+  <!--hoàn thành mục hoàn thành-->
+  <div class="thu-muc">
+    
+  <div class="style-button"style="position: relative; z-index: 1000;">
+    <div class="button">Hoàn thành</div>
+  <p class="icon">
+      <p class="fix-icon" id="fix-icon-muc-hoan-thanh"><i class=" plus-hoan-thanh fas fa-ellipsis-h"></i></p>
+      <p class="fix-icon-add"><i class="plus fas fa-plus-circle"></i></p>
+  </p>
+  <!-- popup -->
+<div class="popup-h-thanh" style="display: none; background-color: antiquewhite; position:absolute; top: 30px; right: -45px; margin:5px; padding: 10px; z-index: 1111;">
+  <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Xóa</p>
+  <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Đổi tên</p>
+</div>
+
+<script>
+  var popup_plus_h_thanh=document.querySelector(".plus-hoan-thanh");
+
+  popup_plus_h_thanh.onclick=function (){
+    document.querySelector(".popup-h-thanh").style.display="";
+    overlay.style.display="";
+  };
+ 
+</script>
+  </div>
+  <div class="tien-do-ke-hoach">   <!--tiến độ kế hoạch-->
+    <div class="muc-ke-hoach">     <!--mục kế hoạch của mục Trang hoàn thành-->
+    <div class="style-trang-gioi-thieu">    
+        <h5> Trang chủ</h5>
+        <div class="fas-fa-ellipsis-h" id="fix-trang-chu"> <i class="fas fa-ellipsis-h"></i> </div>  <!--fix trang chủ-->
+    </div>
+    <div class="far-fa-comment-alt"> <i class="far fa-comment-alt"></i> </div>
+  </div>
+  </div>
+
+  </div><!--đóng-hoàn thành-->
+
+  <!--thêm nhóm-->
+<div class="thu-muc">
+  <div class="them-nhom">           <!-- mục kế hoạch của thêm nhóm-->
+    <div class="icon-them-nhom"> <i class="plus fas fa-plus-circle"></i> </div>     <!--icon thêm nhóm-->
+    <div> <h5> Thêm nhóm </h5></div>
+  </div>
+</div> <!--đóng-thêm-nhóm-->
+
+
+   </div>
+    </div>
+</div>
+<!-- onclick-board -->
+<script>
+var overlay=document.querySelector(".overlay");
+overlay.onclick=function(){
+    document.querySelector(".popup-can-lam").style.display="none";
+    document.querySelector(".popup-dang-lam").style.display="none";
+    document.querySelector(".popup-h-thanh").style.display="none";
+    overlay.style.display="none";
+  }
+</script>
+<!-- onclick-detail-board -->
+<%- include('partials/detailtaskFooter.ejs') %>

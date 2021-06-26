@@ -21,8 +21,12 @@ router.get('/ui/introPage', (_, res) => {
     res.render('introPage')
 })
 
-router.get('/ui/tasks', (_, res) => {
+router.get('/ui/mytasks', (_, res) => {
     res.render('mytasks')
+})
+
+router.get('/ui/detailTask', (_, res) => {
+    res.render('detailTask')
 })
 
 module.exports = router
