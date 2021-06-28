@@ -2,14 +2,28 @@
     <div class="detail">
         <div>
             <div>
-                <h3>Board name</h3>
+                <h3>
+                    <%= data.tasks[0].boardName %>
+                </h3>
             </div>
             <div class="date-created">
                 <img src="/images/tasks.png" alt="">
-                <h4>Ngày tạo: 30/5/2021 10:25</h4>
+                <h4>Ngày tạo:
+                    <%= data.tasks[0].createdAt %>
+                </h4>
             </div>
             <div>
                 <hr>
+            </div>
+            <div>
+                <% data.tasks.forEach(element => { %>
+                    <h1>
+                        <%= element.collectionName %>
+                    </h1>
+                    <h1>
+                        <%= element.description %>
+                    </h1>
+                    <%}); %>
             </div>
         </div>
     </div>
