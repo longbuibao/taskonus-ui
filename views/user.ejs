@@ -1,83 +1,187 @@
 <%- include('partials/userHeader.ejs') %>
     <!-- begin-detail -->
-    <div class="detail">
-        <div class="head-user">
-            <div class="h-user">
-                <div class="u-thumb"></div>
-                <div class="u-account">
-                    <h5>Loan Cao Thi Phuong</h5>
-                    <p>18521001@gm.uit.edu.vn</p>
-                </div>
-            </div>
+    <div class="notion-app">
+		<!-- beign control -->
+		<div class="control">
+            <!-- account -->
+		  <div class="i-user">
+				<div class="thumb"></div>
+				<div class="u-name"></div>
+		  </div>
+          <!-- search-filter -->
+		  <div class="se-fi">
+			<div class="form-group">
+				<div class="btn-group">
+					<input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Tìm kiếm nhanh">
+					<div class="btn btn-info">Tìm</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<select class="custom-select" required>
+					<option selected>Thứ tự mặc định</option>
+					<option value="1">Nhiệm vụ đã hoàn thành</option>
+					<option value="2">Thứ tự từ cũ đến mới</option>
+					<option value="3">Thứ tự từ mới đến cũ</option>
+				</select>
+			</div>
+		  </div>
+          <!-- favorite -->
+          <div class="favorite">
+            <i class="fa fa-star"></i>
+            <h5>Yêu thích</h5>
+          </div>
+
+          <!-- board -->
+          <div class="board">
+            <i class="fa fa-clipboard-list"></i>
+            <h5>Bảng của tôi</h5>
+            <i class="fa fa-plus"></i>
+          </div>
         </div>
-        <div class="user-detail">
-            <div class="user-name">
-                <div class="name-box">
-                    <h6> TÊN NGƯỜI DÙNG </h6>
-                    <p>Loan Cao Thi Phuong</p>
-                </div>
-                <div>
-                    <button type="button" class="btn btnname btn-secondary" data-toggle="modal" data-target="#modalName">
-                        Thay đổi
-                      </button>
-                </div>
-            </div>
-
-            <div class="email">
-                <div class="email-box">
-                    <h6> EMAIL </h6>
-                    <p>18521001@gm.uit.edu.vn</p>
-                </div>
-                <div>
-                    <button type="button" class="btn btnemail btn-secondary" data-toggle="modal" data-target="">
-                        Thay đổi
-                      </button>
+		<!-- begin-detail -->
+		<div class="detail">
+            <div class="head-user">
+                <div class="h-user">
+                    <div class="group-account">
+                      <div class="u-thumb"></div>
+                    </div>
+                    <div class="u-account">
+                        <h5>Loan Cao Thi Phuong</h5>
+                        <p>18521001@gm.uit.edu.vn</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="password">
-                <div class="password-box">
-                    <h6> MẬT KHẨU </h6>
-                    <p>***************</p>
-                </div>
-                <div>
-                    <button type="button" class="btn btnpass btn-secondary" data-toggle="modal" data-target="">
+			<div class="user-detail">
+                <div class="user-name">
+                    <div class="name-box">
+                        <h6> TÊN NGƯỜI DÙNG </h6>
+                        <p>Loan Cao Thi Phuong</p>
+                    </div>
+                    <div> 
+                      <button type="button" class="btn btnname btn-secondary" data-toggle="modal" data-target="#modalName">
                         Thay đổi
                       </button>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-    </div>
-    <!-- modal layout -->
-    <div class="modal fade" id="modalName" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- begin form -->
-                    <h5 class="modal-title" id="modalLabel">Thay đổi tên người dùng</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        
+                <div class="email">
+                    <div class="email-box">
+                        <h6> EMAIL </h6>
+                        <p>18521001@gm.uit.edu.vn</p>
+                    </div>
+                    <div> 
+                      <button type="button" class="btn btnemail btn-secondary" data-toggle="modal" data-target="#modalEmail">
+                        Thay đổi
+                      </button>
+                    </div>
+                </div>
+        
+                <div class="password">
+                    <div class="password-box">
+                        <h6> MẬT KHẨU </h6>
+                        <p>***************</p>
+                    </div>
+                    <div>
+                      <button type="button" class="btn btnpass btn-secondary" data-toggle="modal" data-target="#modalPassword">
+                        Thay đổi
+                      </button>
+                    </div>
+                </div>
+		</div>
+	
+	</div>
+  <!-- modal layout name user -->
+  <div class="modal fade" id="modalName" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- begin form -->
+          <h5 class="modal-title" id="modalLabel">Thay đổi tên người dùng</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="inputEmail">Tên người dùng</label>
-                            <input type="text" class="form-control" id="" placeholder="Nhập tên mới">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword">Mật khẩu</label>
-                            <input type="password" class="form-control" id="" placeholder="Nhập mật khẩu">
-                        </div>
-                    </form>
-                    <!-- end form -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
-                </div>
-            </div>
         </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="name">Tên người dùng</label>
+              <input type="text" class="form-control" id="" placeholder="Nhập tên mới">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Mật khẩu</label>
+              <input type="password" class="form-control" id="" placeholder="Nhập mật khẩu">
+            </div>
+          </form>
+          <!-- end form -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary">Lưu</button>
+        </div>
+      </div>
     </div>
+  </div>
+  <!-- modal layout email -->
+  <div class="modal fade" id="modalEmail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- begin form -->
+          <h5 class="modal-title" id="modalLabel">Thay đổi Email</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="inputEmail">Email</label>
+              <input type="text" class="form-control" id="" placeholder="Nhập email mới">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Mật khẩu</label>
+              <input type="password" class="form-control" id="" placeholder="Nhập mật khẩu">
+            </div>
+          </form>
+          <!-- end form -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal layout passsword -->
+  <div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- begin form -->
+          <h5 class="modal-title" id="modalLabel">Thay đổi Email</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="inputPassword">Mật khẩu hiện tại</label>
+              <input type="password" class="form-control" id="" placeholder="Nhập mật khẩu hiện tại">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Mật khẩu mới</label>
+              <input type="password" class="form-control" id="" placeholder="Nhập mật khẩu mới">
+            </div>
+          </form>
+          <!-- end form -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <%- include('partials/userFooter.ejs') %>
