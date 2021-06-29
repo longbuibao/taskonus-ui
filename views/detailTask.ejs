@@ -4,7 +4,7 @@
         <div class="control">
             <!-- account -->
             <div class="i-user">
-                <div class="thumb"></div>
+                <img class="thumb" src="data:image/png;base64,<%= finalAvatar %>" />
                 <div class="u-name">
                     <%= username %>
                 </div>
@@ -51,8 +51,13 @@
 
         <!-- begin-detail -->
         <div class="detail">
-            <div>
-                <button style="position: absolute; right: 0; padding: 20px;"><a href="/users/logout">Đăng xuất</a></button>
+            <div style="position: absolute; right: 0; padding: 20px; min-width: fit-content;">
+                <button>
+                    <a href="/users/logoutall">Đăng xuất tất cả các phiên</a>
+                </button>
+                <button>
+                    <a href="/users/logout">Đăng xuất</a>
+                </button>
             </div>
             <div class="overlay" style="display: none; position: fixed; top:0; right: 0; left: 0; bottom: 0; background-color:rgba(255,255,255,0); z-index: 0;"></div>
 

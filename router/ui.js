@@ -2,6 +2,9 @@ const express = require('express')
 const router = new express.Router()
 const axios = require('axios').default
 const taskUtils = require('../utils/filter-task')
+const multer = require('multer')
+const sharp = require('sharp')
+const getUserAvatar = require('../utils/get-user-avatar')
     //render login and register page
 router.get('/ui/login', (_, res) => {
     res.render('login')
@@ -73,10 +76,14 @@ router.get('/my-tasks', async(req, res) => {
             'http://localhost:8000/tasks',
             config
         )
-        const { tasks, username } = response.data
+        const { tasks, username, _id } = response.data
+
+        let avatar = await getUserAvatar(_id)
+
+        const finalAvatar = avatar.data.data ? Buffer.from(avatar.data.data).toString('base64') : ''
 
         if (tasks.length === 0) {
-            res.render('noTask', { data: { username } })
+            res.render('noTask', { data: { username, finalAvatar } })
         } else {
             const index = 0
                 //lấy tất cả tên board và collection
@@ -88,8 +95,6 @@ router.get('/my-tasks', async(req, res) => {
                 //lay het tat ca tasks trong collection name
             const tasksFrom = taskUtils.tasksInCollection(tasksByBoardName)
 
-            console.log(tasksFrom)
-
             const data = {
                 boardName: boardAndCollection.boardName[index],
                 tasksFrom
@@ -99,7 +104,8 @@ router.get('/my-tasks', async(req, res) => {
                 boardAndCollection,
                 time: ISOTime,
                 data,
-                username
+                username,
+                finalAvatar
             })
         }
     } catch (error) {
@@ -118,25 +124,209 @@ router.get('/users/logout', async(req, res) => {
     try {
         const response = await axios.post(
             'http://localhost:8000/users/logout',
+            null,
             config
         )
         if (response.status === 200) {
+            res.redirect('/ui/login')
+        }
+    } catch (error) {
+        res.render('error-something-wrong', {
+            data: {
+                message: error.message
+            }
+        })
+    }
+})
+
+router.get('/users/logoutall', async(req, res) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    try {
+        const response = await axios.post(
+            'http://localhost:8000/users/logoutall',
+            null,
+            config
+        )
+        if (response.status === 200) {
+            res.redirect('/ui/login')
+        }
+    } catch (error) {
+        res.render('error-something-wrong', {
+            data: {
+                message: error.message
+            }
+        })
+    }
+})
+
+router.get('/users/me', async(req, res) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    try {
+        const response = await axios.get(
+            'http://localhost:8000/users/me',
+            config
+        )
+        const responseTasks = await axios.get(
+            'http://localhost:8000/tasks',
+            config
+        )
+
+        const tasks = responseTasks.data.tasks
+
+        const boardAndCollection = taskUtils.getBoardNameAndCollectionName(tasks)
+
+        const _id = response.data._id
+        const avatar = await getUserAvatar(_id)
+
+        const finalAvatar = avatar.data.data ? Buffer.from(avatar.data.data).toString('base64') : ''
+
+        if (response.status === 200) {
+            return res.render('user', {
+                data: response.data,
+                boardAndCollection,
+                finalAvatar
+            })
+        } else {
             res.render('error-something-wrong', {
                 data: {
-                    message: response.data.message
+                    message: 'ui.js ln 199'
                 }
             })
         }
     } catch (error) {
-
+        res.render('error-something-wrong', { data: { message: error.message } })
     }
-
-
 })
 
+router.post('/users/me/edit/password', async(req, res) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    const { currentPwd, newPwd } = req.body
+    console.log(currentPwd, newPwd)
+    try {
+        const response = await axios.post(
+            'http://localhost:8000/check-old-password', { currentPwd },
+            config
+        )
+
+        if (response.data.isMatch) {
+            const response = await axios.patch(
+                'http://localhost:8000/users/me', { password: newPwd },
+                config
+            )
+            console.log(response.status)
+            res.redirect('/users/me')
+        }
+    } catch (error) {
+        res.render('error-something-wrong', {
+            data: {
+                message: error.message
+            }
+        })
+    }
+})
+
+const upload = multer({
+    limits: {
+        fileSize: 5000000
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname) {
+            return cb(new Error('Please select an image'))
+        }
+        if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/))
+            return cb(new Error('File must be an image'))
+        cb(undefined, true)
+    }
+});
+
+router.post('/users/me/edit', upload.single('avatar'), async(req, res) => {
+    const { name, email, password } = req.body
+    console.log('/users/me/edit: ', password)
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        },
+        maxContentLength: 5000000,
+        maxBodyLength: 5000000
+    }
+
+    const userToPatch = {
+        ...(name !== undefined) && { name },
+        ...(email !== undefined) && { email },
+        ...(password !== undefined) && { password }
+    }
+
+    if (req.file) {
+        try {
+            const buffer = await sharp(req.file.buffer)
+                .resize({ width: 150 })
+                .toBuffer()
+            req.file.buffer = buffer
+            const file = req.file.buffer
+            const data = {
+                file: {
+                    buffer: file
+                },
+                originalname: req.file.originalname
+            }
+
+            const uploadAvatar = await axios.post(
+                'http://localhost:8000/users/me/avatar',
+                data,
+                config
+            )
+            if (uploadAvatar.status === 200) {
+                return res.redirect('/users/me')
+            } else {
+                res.render('error-something-wrong', {
+                    data: {
+                        message: 'ui.js ln 290'
+                    }
+                })
+            }
+        } catch (e) {
+            res.render('error-something-wrong', {
+                data: {
+                    message: e.message
+                }
+            })
+        }
+    }
+
+    try {
+        console.log(userToPatch)
+        const response = await axios.patch(
+            `http://localhost:8000/users/me`,
+            userToPatch,
+            config
+        )
+
+        if (response.status === 200) {
+            res.redirect('/users/me')
+        } else res.render('error-something-wrong', {
+            data: { message: response.status }
+        })
+    } catch (error) {
+        res.render('error-something-wrong', {
+            data: { message: error.message }
+        })
+    }
+})
 
 router.get('/test', (req, res) => {
-    res.render('detailTask')
+    res.render('user')
 })
 
 module.exports = router
