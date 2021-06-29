@@ -76,7 +76,7 @@ router.get('/my-tasks', async(req, res) => {
         const { tasks, username } = response.data
 
         if (tasks.length === 0) {
-            res.render('noTask')
+            res.render('noTask', { data: { username } })
         } else {
             const index = 0
                 //lấy tất cả tên board và collection

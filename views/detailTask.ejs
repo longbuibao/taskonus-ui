@@ -111,22 +111,5 @@
                     <% } %>
             </div>
         </div>
-        <script>
-            var popup_plus_can_lam = document.querySelector(".plus-can-lam");
-            popup_plus_can_lam.onclick = function() {
-                document.querySelector(".popup-can-lam").style.display = "";
-                overlay.style.display = "";
-            };
-        </script>
-        <!-- onclick-board -->
-        <script>
-            var overlay = document.querySelector(".overlay");
-            overlay.onclick = function() {
-                document.querySelector(".popup-can-lam").style.display = "none";
-                document.querySelector(".popup-dang-lam").style.display = "none";
-                document.querySelector(".popup-h-thanh").style.display = "none";
-                overlay.style.display = "none";
-            }
-        </script>
         <!-- onclick-detail-board -->
         <%- include('partials/detailtaskFooter.ejs') %>
