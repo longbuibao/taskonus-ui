@@ -1,56 +1,102 @@
 <%- include('partials/notaskHeader.ejs') %>
 <div class="notion-app">
-    <!-- beign control -->
-    <div class="control">
-        <!-- account -->
-      <div class="i-user">
-            <div class="thumb"></div>
-            <div class="u-name">KTW</div>
+  <!-- begin control -->
+  <div class="control">
+          <!-- account -->
+    <div class="i-user">
+      <div class="thumb"></div>
+      <div class="u-name">KTW</div>
+    </div>
+        <!-- search-filter -->
+    <div class="se-fi">
+    <div class="form-group">
+      <div class="btn-group">
+        <input type="text" class="form-control" name="" id="myInput" aria-describedby="helpId" placeholder="Tìm kiếm nhanh">
+        <div class="btn btn-info">Tìm</div>
       </div>
-      <!-- search-filter -->
-      <div class="se-fi">
-        <div class="form-group">
-            <div class="btn-group">
-                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Tìm kiếm nhanh">
-                <div class="btn btn-info">Tìm</div>
-            </div>
+    </div>
+
+    <div class="form-group">
+      <select class="custom-select" required>
+        <option selected>Thứ tự mặc định</option>
+        <option value="1">Nhiệm vụ đã hoàn thành</option>
+        <option value="2">Thứ tự từ cũ đến mới</option>
+        <option value="3">Thứ tự từ mới đến cũ</option>
+      </select>
+    </div>
+    </div>
+        <!-- favorite -->
+        <div class="favorite">
+          <i class="fa fa-star"></i>
+          <h5>Yêu thích</h5>
         </div>
 
-        <div class="form-group">
-            <select class="custom-select" required>
-                <option selected>Thứ tự mặc định</option>
-                <option value="1">Nhiệm vụ đã hoàn thành</option>
-                <option value="2">Thứ tự từ cũ đến mới</option>
-                <option value="3">Thứ tự từ mới đến cũ</option>
-            </select>
+        <!-- board -->
+        <div class="board">
+          <i class="fa fa-clipboard-list"></i>
+          <h5>Bảng của tôi</h5>
+          <i class="fa fa-addtask fa-plus" data-toggle="modal" data-target="#modalName"></i>
         </div>
       </div>
-      <!-- favorite -->
-      <div class="favorite">
-        <i class="fa fa-star"></i>
-        <h5>Yêu thích</h5>
+
+  <!-- begin-detail -->
+  <div class="detail">
+      <div class="i-welcome">
+        <img src="./img/welcome_img-2.png" alt="" style="display: block; width: 50%; margin-left: auto; margin-right: auto; margin-top: 40px;">
       </div>
-
-      <!-- board -->
-      <div class="board">
-        <i class="fa fa-clipboard-list"></i>
-        <h5>Bảng của tôi</h5>
-        <i class="fa fa-plus"></i>
+      <div class="text-welcome">
+        <h3>Chào mừng bạn đến với TaskOnUs!</h3>
+        <p>Bạn chưa có task nào hết?</p>
+        <button type="button" class="btn btnstart btn-outline-primary" data-toggle="modal" data-target="#modalName">Bắt đầu</button>
       </div>
-    </div>
+     
 
-    <!-- begin-detail -->
-    <div class="detail">
-    <div class="i-welcome">
-      <img src="./img/welcome_img-2.png" alt="" style="display: block; width: 50%; margin-left: auto; margin-right: auto; margin-top: 40px;">
-    </div>
-    <div class="text-welcome">
-      <h3>Chào mừng bạn đến với TaskOnUs!</h3>
-      <p>Bạn chưa có task nào hết?</p>
-      <button type="button" class="btn btnstart btn-outline-primary">Bắt đầu</button>
-    </div>
-   
-
-    </div>
+  </div>
 </div>
+<!-- Modal add board -->
+<div class="modal fade" id="modalName" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Tạo bảng mới</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- input form -->
+        <form>
+          <div class="form-group">
+            <label for="name">Tên bảng</label>
+            <input type="text" class="form-control" id="" placeholder="Nhập tên bảng">
+          </div>
+          <div class="form-group">
+            <label for="name">Tên thư mục</label>
+            <input type="text" class="form-control" id="" placeholder="Nhập nhóm thư mục (đang làm,...)">
+          </div>
+          <div class="form-group">
+            <label for="name">Tên task</label>
+            <input type="text" class="form-control" id="" placeholder="Nhập tên task của thư mục (công việc 1,...)">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary">Tạo</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- setting button search -->
+<script>
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      //gọi đến danh sách bảng có id="myBoard" 
+      $("#myBoard ").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 <%- include('partials/notaskFooter.ejs') %>
