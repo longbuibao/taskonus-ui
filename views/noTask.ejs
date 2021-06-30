@@ -6,7 +6,9 @@
             <div class="i-user">
                 <img class="thumb" src="data:image/png;base64,<%= data.finalAvatar %>" />
                 <div class="u-name">
-                    <%= data.username %>
+                    <a href="http://localhost:3000/users/me">
+                        <%= data.username %>
+                    </a>
                 </div>
             </div>
             <!-- search-filter -->
@@ -36,7 +38,9 @@
             <!-- board -->
             <div class="board">
                 <i class="fa fa-clipboard-list"></i>
-                <h5>Bảng của tôi</h5>
+                <h5>
+                    <a href="http://localhost:3000/my-tasks">Bảng của tôi</a>
+                </h5>
                 <i class="fa fa-addtask fa-plus" data-toggle="modal" data-target="#modalName"></i>
             </div>
         </div>

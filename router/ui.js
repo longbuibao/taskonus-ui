@@ -325,6 +325,26 @@ router.post('/users/me/edit', upload.single('avatar'), async(req, res) => {
     }
 })
 
+router.get('/users/delete', async(req, res) => {
+    try {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${req.cookies.authtoken}`
+            }
+        }
+        const response = await axios.delete(
+            'http://localhost:8000/users/me',
+            config
+        )
+        if (response.status === 200) {
+            res.redirect('/ui/login')
+        }
+    } catch (error) {
+
+    }
+})
+
+
 router.get('/test', (req, res) => {
     res.render('user')
 })

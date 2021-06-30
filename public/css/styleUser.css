@@ -173,3 +173,11 @@ body {
 hr.style1 {
     border-top: 1px solid #8c8b8b;
 }
+
+.board h5 a {
+    margin: unset;
+}
+
+#board .modal-content {
+    margin-top: 10px;
+}

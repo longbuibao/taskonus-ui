@@ -5,6 +5,7 @@ body {
     background-size: cover;
     height: 100vh;
     width: 100vw;
+    font-family: Ubuntu;
 }
 
 .logo {

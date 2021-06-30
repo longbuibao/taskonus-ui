@@ -7,7 +7,9 @@
             <div class="i-user">
                 <img class="thumb" src="data:image/png;base64,<%= finalAvatar %>" />
                 <div class="u-name">
-                    <%= data.name %>
+                    <a href="http://localhost:3000/users/me">
+                        <%= data.name %>
+                    </a>
                 </div>
             </div>
             <!-- search-filter -->
@@ -37,9 +39,12 @@
             <!-- board -->
             <div class="board">
                 <i class="fa fa-clipboard-list"></i>
-                <h5>Bảng của tôi</h5>
-                <i class="fa fa-plus"></i>
+                <h5>
+                    <a href="http://localhost:3000/my-tasks">Bảng của tôi</a>
+                </h5>
+                <i class="fa fa-addtask fa-plus" data-toggle="modal" data-target="#board"></i>
             </div>
+
 
             <% boardAndCollection.boardName.forEach(name => { %>
                 <a href="#">
@@ -55,6 +60,9 @@
                 </button>
                 <button>
                     <a href="/users/logout">Đăng xuất</a>
+                </button>
+                <button>
+                    <a href="/users/delete">Xóa tài khoản của tôi</a>
                 </button>
             </div>
             <div class="head-user">
@@ -126,6 +134,41 @@
             </div>
 
         </div>
+
+        <div class="modal fade" id="board" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Tạo bảng mới</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- input form -->
+                        <form action="">
+                            <div class="form-group">
+                                <label for="name">Tên bảng</label>
+                                <input type="text" class="form-control" placeholder="Nhập tên bảng">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Tên thư mục</label>
+                                <input type="text" class="form-control" placeholder="Nhập nhóm thư mục (đang làm,...)">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Tên task</label>
+                                <input type="text" class="form-control" placeholder="Nhập tên task của thư mục (công việc 1,...)">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-primary">Tạo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- modal layout name user -->
         <div class="modal fade" id="modalName" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -134,8 +177,8 @@
                         <!-- begin form -->
                         <h5 class="modal-title" id="modalLabel">Thay đổi tên người dùng</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                             <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <form action="/users/me/edit" method="POST">
@@ -161,8 +204,8 @@
                         <!-- begin form -->
                         <h5 class="modal-title" id="modalLabel">Thay đổi Email</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <form action="/users/me/edit" method="POST">
@@ -175,10 +218,8 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </div>
                         </form>
-
                         <!-- end form -->
                     </div>
-
                 </div>
             </div>
         </div>
@@ -190,8 +231,8 @@
                         <!-- begin form -->
                         <h5 class="modal-title" id="modalLabel">Thay đổi Email</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <form action="/users/me/edit/password" method="POST">
@@ -222,8 +263,8 @@
                         <!-- begin form -->
                         <h5 class="modal-title" id="modalLabel">Thay đổi Avatar</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <form action="/users/me/edit" method="POST" enctype="multipart/form-data">
@@ -236,10 +277,8 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </div>
                         </form>
-
                         <!-- end form -->
                     </div>
-
                 </div>
             </div>
         </div>
