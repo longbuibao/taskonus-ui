@@ -70,8 +70,10 @@
 
                 <div>
                     <h2>
-                        <%= data.boardName %>
+                        <input type="text" id="oldBoardName" name="boardName" value="<%= data.boardName %>">
                     </h2>
+                    <button id="boardNameEdit"><i class="far fa-edit"></i></button>
+                    <button id="boardNameDelete"><i class="far fa-trash-alt"></i></button>
                     <p>
                         Ngày tạo:
                         <%= time %>
@@ -85,31 +87,39 @@
                     <div class="thu-muc">
                         <!--thư mục-->
                         <div class="style-button" style="position: relative; z-index: 1000;">
-                            <div class="button">
-                                <%= collectionName %>
-                            </div>
-                            <p class="icon">
-                                <p class="fix-icon"> <i class="far fa-edit"></i> </p>
-                                <p class="fix-icon-add"> <i class="far fa-trash-alt"></i> </p>
-                            </p>
-                            <!-- popup mục cần làm -->
-                            <div class="popup-can-lam" style="display: none; background-color: antiquewhite; position:absolute; top: 30px; right: -45px; margin:5px; padding: 10px; z-index: 1111;">
-                                <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Xóa</p>
-                                <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Đổi tên</p>
-                            </div>
+                            <form action="" style="display: flex; flex-direction: row;">
+                                <div class="button">
+                                    <input name="collectionName" style="min-width: fit-content;" type="text" value="<%= collectionName %>">
+                                </div>
+                                <!-- <p class="icon" style="display: flex; flex-direction: column;"> -->
+                                <div>
+                                    <button type="submit"><i class="far fa-edit"></i></button>
+                                    <button type="submit"><i class="far fa-trash-alt"></i></button>
+                                </div>
+                                <!-- </p> -->
+                            </form>
+
                         </div>
                         <div class="tien-do-ke-hoach">
                             <!--tiến độ kế hoạch-->
                             <% data.tasksFrom[collectionName].forEach(task => {%>
-                                <div class="muc-ke-hoach">
+                                <div class="muc-ke-hoach" style="margin-top: 10px;">
+                                    <form action="" method="post">
+                                        <div>
+                                            <% const time = new Date(task.createdAt) %>
+                                                <%= `Ngày:${time.getDate()}/${time.getMonth()}, Lúc: ${time.getHours()}:${time.getMinutes()}`%>
+                                        </div>
+                                        <div class="style-trang-gioi-thieu">
+                                            <input name="description" style="min-height: 20px;" type="text" name="" id="" value="<%= task.description %>">
+                                        </div>
+                                        <input type="checkbox" name="completed" <%=( task.completed) ? 'checked' : ''%> ><span style="font-size: smaller;">Đã hoàn thành</span>
+                                        <div class="fas-fa-ellipsis-h" style="display: flex; flex-direction: row; justify-content: center;margin-top: 5px;">
+                                            <button type="submit"><i class="far fa-edit" style="margin-top: 3px;"></i></button>
+                                            <button type="submit"><i class="far fa-trash-alt" style="margin-top: 3px;"></i></button>
+                                        </div>
+                                    </form>
                                     <!--mục kế hoạch của mục Làm ĐN-ĐK-->
-                                    <div class="style-trang-gioi-thieu">
-                                        <h5>
-                                            <%= task %>
-                                        </h5>
-                                        <div class="fas-fa-ellipsis-h"> <i class="fas fa-check"></i> <i class="far fa-edit"></i> <i class="far fa-trash-alt"></i> </div>
-                                    </div>
-                                    <div class="far-fa-comment-alt"> <i class="far fa-comment-alt"></i> </div>
+
                                 </div>
                                 <% }) %>
                         </div>

@@ -47,7 +47,7 @@
 
 
             <% boardAndCollection.boardName.forEach(name => { %>
-                <a href="#">
+                <a href="/my-tasks/?boardName=<%=name%>">
                     <%= name %>
                 </a>
                 <% }) %>

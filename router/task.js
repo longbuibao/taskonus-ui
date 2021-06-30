@@ -39,7 +39,6 @@ router.get('/my-tasks-by', async(req, res) => {
             Authorization: `Bearer ${req.cookies.authtoken}`
         }
     }
-    console.log(url + `tasks/?boardName=${boardName}`)
     const tasksByBoardName = await axios.get(
         url + `tasks/?boardName=${boardName}`,
         config
@@ -52,8 +51,6 @@ router.get('/my-tasks-by', async(req, res) => {
     let avatar = await getUserAvatar(_id)
 
     const finalAvatar = avatar.data.data ? Buffer.from(avatar.data.data).toString('base64') : ''
-
-    console.log('hello')
 
     if (tasks.length === 0) {
         res.render('noTask', { data: { username, finalAvatar } })
@@ -82,6 +79,33 @@ router.get('/my-tasks-by', async(req, res) => {
 
 
     }
+})
+
+router.post('/edit/tasks/boardName', async(req, res) => {
+    const { oldBoardName, newBoardName } = req.body
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    const response = await axios.get(
+        url + `tasks/?boardName=${oldBoardName}`,
+        config
+    )
+
+    if (response.status === 200) {
+        const patchBoardName = await axios.patch(
+            url + 'edit/boardName', { newBoardName, oldBoardName },
+            config
+        )
+        console.log(patchBoardName)
+
+        if (patchBoardName.status === 200) {
+            res.status(200).send()
+        } else {
+            res.status(500).send()
+        }
+    } else res.status(500).send()
 })
 
 module.exports = router

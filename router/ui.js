@@ -213,7 +213,6 @@ router.post('/users/me/edit/password', async(req, res) => {
         }
     }
     const { currentPwd, newPwd } = req.body
-    console.log(currentPwd, newPwd)
     try {
         const response = await axios.post(
             'http://localhost:8000/check-old-password', { currentPwd },
@@ -225,7 +224,6 @@ router.post('/users/me/edit/password', async(req, res) => {
                 'http://localhost:8000/users/me', { password: newPwd },
                 config
             )
-            console.log(response.status)
             res.redirect('/users/me')
         }
     } catch (error) {
@@ -253,7 +251,6 @@ const upload = multer({
 
 router.post('/users/me/edit', upload.single('avatar'), async(req, res) => {
     const { name, email, password } = req.body
-    console.log('/users/me/edit: ', password)
     const config = {
         headers: {
             Authorization: `Bearer ${req.cookies.authtoken}`
@@ -306,7 +303,6 @@ router.post('/users/me/edit', upload.single('avatar'), async(req, res) => {
     }
 
     try {
-        console.log(userToPatch)
         const response = await axios.patch(
             `http://localhost:8000/users/me`,
             userToPatch,

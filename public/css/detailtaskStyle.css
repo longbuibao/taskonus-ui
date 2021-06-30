@@ -107,13 +107,13 @@ body {
 }
 
 .button {
-    min-width: fit-content;
-    min-height: fit-content;
+    /* min-width: fit-content; */
+    /* min-height: fit-content; */
     color: white;
     border-radius: 10px;
     background-color: #5B6D5B;
     text-align: center;
-    padding: 10px;
+    padding: 10px 10px 10px 10px;
     margin-right: 20px;
 }
 
@@ -125,7 +125,7 @@ body {
 .thu-muc {
     width: 20%;
     float: left;
-    margin-right: 5%;
+    margin-right: 10%;
 }
 
 .noi-dung-ke-hoach-thiet-ke {
@@ -138,6 +138,11 @@ body {
     background-color: #fffdf8;
     box-shadow: 1px 1px 1px #7b7c7e;
     border-radius: 5px;
+    padding: 10px 15px 10px 10px;
+}
+
+.fas-fa-ellipsis-h i {
+    margin-right: 5px;
 }
 
 .tien-do-ke-hoach {
@@ -160,13 +165,12 @@ body {
 
 .style-trang-gioi-thieu {
     display: flex;
-    padding-left: 10px;
     margin-top: 8px;
 }
 
 .fas-fa-ellipsis-h {
     font-size: 20px;
-    margin-left: 80px;
+    margin-left: 0;
 }
 
 #fix {
