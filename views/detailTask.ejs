@@ -41,11 +41,11 @@
                 <h5>
                     <a href="http://localhost:3000/my-tasks">Bảng của tôi</a>
                 </h5>
-                <a href="#"><i class="fa fa-plus"></i></a>
+                <i class="fa fa-addtask fa-plus" data-toggle="modal" data-target="#board"></i>
             </div>
             <div>
                 <% boardAndCollection.boardName.forEach(name => { %>
-                    <a style="text-align: center; margin: 10px; display: block;" href="">
+                    <a style="text-align: center; margin: 10px; display: block;" href="/my-tasks-by/?boardName=<%=name%>">
                         <%= name %>
                     </a>
                     <% }) %>
@@ -77,6 +77,7 @@
                         <%= time %>
                     </p>
                 </div>
+
             </div>
             <!--Nội dung kế hoach thiết kế-->
             <div class="noi-dung-ke-hoach-thiet-ke">
@@ -88,8 +89,8 @@
                                 <%= collectionName %>
                             </div>
                             <p class="icon">
-                                <p class="fix-icon"> <i class="plus-can-lam fas fa-ellipsis-h"></i> </p>
-                                <p class="fix-icon-add"> <i class=" fas fa-plus-circle"></i> </p>
+                                <p class="fix-icon"> <i class="far fa-edit"></i> </p>
+                                <p class="fix-icon-add"> <i class="far fa-trash-alt"></i> </p>
                             </p>
                             <!-- popup mục cần làm -->
                             <div class="popup-can-lam" style="display: none; background-color: antiquewhite; position:absolute; top: 30px; right: -45px; margin:5px; padding: 10px; z-index: 1111;">
@@ -106,7 +107,7 @@
                                         <h5>
                                             <%= task %>
                                         </h5>
-                                        <div class="fas-fa-ellipsis-h"> <i class=" fas fa-ellipsis-h"></i> </div>
+                                        <div class="fas-fa-ellipsis-h"> <i class="fas fa-check"></i> <i class="far fa-edit"></i> <i class="far fa-trash-alt"></i> </div>
                                     </div>
                                     <div class="far-fa-comment-alt"> <i class="far fa-comment-alt"></i> </div>
                                 </div>
@@ -115,6 +116,40 @@
 
                     </div>
                     <% } %>
+            </div>
+        </div>
+        <div class="modal fade" id="board" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Tạo bảng mới</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- input form -->
+                        <form action="/tasks/create" method="POST">
+                            <div class="form-group">
+                                <label for="name">Tên bảng</label>
+                                <input type="text" name="boardName" class="form-control" placeholder="Nhập tên bảng">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Tên thư mục</label>
+                                <input type="text" name="collectionName" class="form-control" placeholder="Nhập nhóm thư mục (đang làm,...)">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Tên task</label>
+                                <input type="text" name="description" class="form-control" placeholder="Nhập tên task của thư mục (công việc 1,...)">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <button type="submit" class="btn btn-primary">Tạo</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
             </div>
         </div>
         <!-- onclick-detail-board -->
