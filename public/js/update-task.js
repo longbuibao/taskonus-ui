@@ -8,6 +8,31 @@ const boardNameDelete = document.getElementById('boardNameDelete')
 const editCollectionName = document.getElementById('editCollectionName')
 const deleteCollectionName = document.getElementById('deleteCollectionName')
 
+const fetchFunction = async(info) => {
+    const { method, body, message, url, redirectTo } = info
+    const allowedMethod = ['POST', 'PATCH', 'DELETE', 'post', 'patch', 'delete']
+    if (allowedMethod.includes(method)) {
+        const response = await fetch(
+            url, {
+                method: method.toUpperCase(),
+                mode: 'cors',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            }
+        )
+        if (response.status === 200) {
+            window.location.href = redirectTo
+        } else {
+            alert(message)
+        }
+    } else {
+        console.log('Method not allowed')
+    }
+}
+
 
 boardNameEdit.addEventListener('click', async() => {
     const newBoardName = document.getElementById('oldBoardName').value
@@ -15,22 +40,15 @@ boardNameEdit.addEventListener('click', async() => {
         oldBoardName,
         newBoardName
     }
-    const response = await fetch(
-        `http://localhost:3000/edit/tasks/boardName`, {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        }
-    )
-    if (response.status === 200) {
-        window.location.href = `http://localhost:3000/my-tasks-by/?boardName=${newBoardName}`
-    } else {
-        alert('Không thể xóa bảng, vui lòng thử lại')
-    }
+
+    await fetchFunction({
+        url: `http://localhost:3000/edit/tasks/boardName`,
+        method: 'POST',
+        body,
+        message: 'Không thể sửa bảng, vui lòng thử lại',
+        redirectTo: `http://localhost:3000/my-tasks-by/?boardName=${newBoardName}`
+    })
+
 })
 
 boardNameDelete.addEventListener('click', async() => {
@@ -38,22 +56,13 @@ boardNameDelete.addEventListener('click', async() => {
     const body = {
         boardName
     }
-    const response = await fetch(
-        `http://localhost:3000/edit/tasks/boardName`, {
-            method: 'DELETE',
-            mode: 'cors',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        }
-    )
-    if (response.status === 200) {
-        window.location.href = "http://localhost:3000/my-tasks"
-    } else {
-        alert('Không thể xóa bảng, vui lòng thử lại')
-    }
+    await fetchFunction({
+        url: `http://localhost:3000/edit/tasks/boardName`,
+        method: 'delete',
+        body,
+        message: 'Không thể xóa bảng, vui lòng thử lại',
+        redirectTo: 'http://localhost:3000/my-tasks'
+    })
 })
 
 editCollectionName.addEventListener('click', async() => {
@@ -63,20 +72,28 @@ editCollectionName.addEventListener('click', async() => {
         newCollectionName,
         oldCollectionName
     }
-    const response = await fetch(
-        'http://localhost:3000/edit/tasks/collectionName', {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body),
+
+    await fetchFunction({
+            url: 'http://localhost:3000/edit/tasks/collectionName',
+            method: 'post',
+            body,
+            message: 'Không thể đổi tên thư mục, thử lại sau',
+            redirectTo: `http://localhost:3000/my-tasks-by/?boardName=${newBoardName}`
         }
+
     )
-    if (response.status === 200) {
-        window.location.href = `http://localhost:3000/my-tasks-by/?boardName=${newBoardName}`
-    } else {
-        alert('Không thể đổi tên thư mục, thử lại sau')
+})
+
+deleteCollectionName.addEventListener('click', async() => {
+    const collectionName = document.getElementById('oldCollectionName').value
+    const body = {
+        collectionName
     }
+    await fetchFunction({
+        url: 'http://localhost:3000/edit/tasks/collectionName',
+        method: 'delete',
+        body,
+        message: 'Xóa tên thư mục thành công',
+        redirectTo: 'http://localhost:3000/my-tasks'
+    })
 })

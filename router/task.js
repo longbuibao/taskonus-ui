@@ -83,6 +83,7 @@ router.get('/my-tasks-by', async(req, res) => {
 
 router.post('/edit/tasks/boardName', async(req, res) => {
     const { oldBoardName, newBoardName } = req.body
+    console.log(req.body)
     const config = {
         headers: {
             Authorization: `Bearer ${req.cookies.authtoken}`
@@ -140,6 +141,24 @@ router.post('/edit/tasks/collectionName', async(req, res) => {
     if (response.status === 200) {
         res.status(200).send()
     } else res.status(400).send()
+})
+
+router.delete('/edit/tasks/collectionName', async(req, res) => {
+    const { collectionName } = req.body
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    const response = await axios.delete(
+        url + `edit/tasks/collectionName/?collectionName=${collectionName}`,
+        config
+    )
+    if (response.status === 200) {
+        res.status(200).send()
+    } else {
+        res.status(400).send()
+    }
 })
 
 module.exports = router
