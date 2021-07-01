@@ -1,12 +1,17 @@
 const oldBoardName = document.getElementById('oldBoardName').value
 const oldCollectionName = document.getElementById('oldCollectionName').value
-
+const oldDescription = document.getElementById('oldDescription').value
+const oldCompleted = document.getElementById('completed').checked
 
 const boardNameEdit = document.getElementById('boardNameEdit')
 const boardNameDelete = document.getElementById('boardNameDelete')
 
 const editCollectionName = document.getElementById('editCollectionName')
 const deleteCollectionName = document.getElementById('deleteCollectionName')
+
+const editDescription = document.getElementById('editDescription')
+const deleteDescription = document.getElementById('deleteDescription')
+
 
 const fetchFunction = async(info) => {
     const { method, body, message, url, redirectTo } = info
@@ -70,7 +75,8 @@ editCollectionName.addEventListener('click', async() => {
     const newCollectionName = document.getElementById('oldCollectionName').value
     const body = {
         newCollectionName,
-        oldCollectionName
+        oldCollectionName,
+        newBoardName
     }
 
     await fetchFunction({
@@ -86,14 +92,50 @@ editCollectionName.addEventListener('click', async() => {
 
 deleteCollectionName.addEventListener('click', async() => {
     const collectionName = document.getElementById('oldCollectionName').value
+    const newBoardName = document.getElementById('oldBoardName').value
+
     const body = {
-        collectionName
+        collectionName,
+        newBoardName
     }
+    console.log(body)
     await fetchFunction({
         url: 'http://localhost:3000/edit/tasks/collectionName',
         method: 'delete',
         body,
         message: 'Xóa tên thư mục thành công',
         redirectTo: 'http://localhost:3000/my-tasks'
+    })
+})
+
+editDescription.addEventListener('click', async() => {
+    const boardName = document.getElementById('oldBoardName').value
+    const collectionName = document.getElementById('oldCollectionName').value
+    const newCompleted = document.getElementById('completed').checked
+    const newDescription = document.getElementById('oldDescription').value
+
+    const body = {
+        oldData: {
+            oldDescription,
+            oldCompleted
+        },
+        newData: {
+            newDescription,
+            newCompleted
+        },
+        whereTo: {
+            boardName,
+            collectionName
+        }
+    }
+
+    console.log(body)
+
+    const response = await fetchFunction({
+        url: 'http://localhost:3000/edit/tasks/description',
+        method: 'post',
+        body,
+        message: 'Sửa thành công',
+        redirectTo: `http://localhost:3000/my-tasks-by/?boardName=${boardName}`
     })
 })

@@ -104,22 +104,20 @@
                             <!--tiến độ kế hoạch-->
                             <% data.tasksFrom[collectionName].forEach(task => {%>
                                 <div class="muc-ke-hoach" style="margin-top: 10px;">
-                                    <form action="" method="post">
-                                        <div>
-                                            <% const time = new Date(task.createdAt) %>
-                                                <%= `Ngày:${time.getDate()}/${time.getMonth()}, Lúc: ${time.getHours()}:${time.getMinutes()}`%>
-                                        </div>
-                                        <div class="style-trang-gioi-thieu">
-                                            <input name="description" style="min-height: 20px;" type="text" name="" id="" value="<%= task.description %>">
-                                        </div>
-                                        <input type="checkbox" name="completed" <%=( task.completed) ? 'checked' : ''%> ><span style="font-size: smaller;">Đã hoàn thành</span>
-                                        <div class="fas-fa-ellipsis-h" style="display: flex; flex-direction: row; justify-content: center;margin-top: 5px;">
-                                            <button type="submit"><i class="far fa-edit" style="margin-top: 3px;"></i></button>
-                                            <button type="submit"><i class="far fa-trash-alt" style="margin-top: 3px;"></i></button>
-                                        </div>
-                                    </form>
+                                    <div>
+                                        <% const time = new Date(task.createdAt) %>
+                                            <%= `Ngày:${time.getDate()}/${time.getMonth() + 1}, Lúc: ${time.getHours()}:${time.getMinutes()}`%>
+                                    </div>
+                                    <div class="style-trang-gioi-thieu">
+                                        <input id="oldDescription" style="min-height: 20px;" type="text" name="" value="<%= task.description %>">
+                                    </div>
+                                    <input name="checkbox" type="checkbox" id="completed" <%=( task.completed) ? 'checked' : ''%> >
+                                    <label for="completed">Đã hoàn thành</label>
+                                    <div class="fas-fa-ellipsis-h" style="display: flex; flex-direction: row; justify-content: center;margin-top: 5px;">
+                                        <button id="editDescription"><i class="far fa-edit" style="margin-top: 3px;"></i></button>
+                                        <button id="deleteDescription"><i class="far fa-trash-alt" style="margin-top: 3px;"></i></button>
+                                    </div>
                                     <!--mục kế hoạch của mục Làm ĐN-ĐK-->
-
                                 </div>
                                 <% }) %>
                         </div>
