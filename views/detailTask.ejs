@@ -22,11 +22,11 @@
 
                 <div class="form-group">
                     <select class="custom-select" required>
-                <option selected>Thứ tự mặc định</option>
-                <option value="1">Nhiệm vụ đã hoàn thành</option>
-                <option value="2">Thứ tự từ cũ đến mới</option>
-                <option value="3">Thứ tự từ mới đến cũ</option>
-            </select>
+                        <option selected>Thứ tự mặc định</option>
+                        <option value="1">Nhiệm vụ đã hoàn thành</option>
+                        <option value="2">Thứ tự từ cũ đến mới</option>
+                        <option value="3">Thứ tự từ mới đến cũ</option>
+                    </select>
                 </div>
             </div>
             <!-- favorite -->
@@ -70,7 +70,7 @@
 
                 <div>
                     <h2>
-                        <input type="text" id="oldBoardName" name="boardName" value="<%= data.boardName %>">
+                        <input type="text" id="oldBoardName" value="<%= data.boardName %>">
                     </h2>
                     <button id="boardNameEdit"><i class="far fa-edit"></i></button>
                     <button id="boardNameDelete"><i class="far fa-trash-alt"></i></button>
@@ -87,9 +87,9 @@
                     <div class="thu-muc">
                         <!--thư mục-->
                         <div class="style-button" style="position: relative; z-index: 1000;">
-                            <form action="" style="display: flex; flex-direction: row;">
+                            <div style="display: flex; flex-direction: row;">
                                 <div class="button">
-                                    <input name="collectionName" style="min-width: fit-content;" type="text" value="<%= collectionName %>">
+                                    <input id="collectionName" style="min-width: fit-content;" type="text" value="<%= collectionName %>">
                                 </div>
                                 <!-- <p class="icon" style="display: flex; flex-direction: column;"> -->
                                 <div>
@@ -97,7 +97,7 @@
                                     <button type="submit"><i class="far fa-trash-alt"></i></button>
                                 </div>
                                 <!-- </p> -->
-                            </form>
+                            </div>
 
                         </div>
                         <div class="tien-do-ke-hoach">

@@ -105,7 +105,25 @@ router.post('/edit/tasks/boardName', async(req, res) => {
         } else {
             res.status(500).send()
         }
-    } else res.status(500).send()
+    } else res.status(400).send()
+})
+
+router.delete('/edit/tasks/boardName', async(req, res) => {
+    const { boardName } = req.body
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    const response = await axios.delete(
+        url + `edit/tasks/boardName/?boardName=${boardName}`,
+        config
+    )
+    if (response.status === 200) {
+        res.status(200).send()
+    } else {
+        res.status(400).send()
+    }
 })
 
 module.exports = router
