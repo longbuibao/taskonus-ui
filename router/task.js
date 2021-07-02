@@ -201,4 +201,33 @@ router.delete('/edit/tasks/delete', async(req, res) => {
         res.status(400).send()
     }
 })
+
+router.get('/search/tasks', async(req, res) => {
+    const { boardName } = req.query
+    console.log(boardName)
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    try {
+        const allBoardName = await axios.get(
+            url + `search/tasks/?boardName=${boardName}`,
+            config
+        )
+        if (allBoardName.status === 200) {
+            res.status(200).send(allBoardName.data)
+        }
+    } catch (error) {
+        if (error) {
+            res.status(404).send()
+        }
+    }
+})
+
+router.post('/search/display-result', async(req, res) => {
+    console.log(req.body)
+    res.render('main')
+})
+
 module.exports = router
