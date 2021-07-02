@@ -23,11 +23,11 @@ const getTasksByBoardName = (tasks, boardName) => {
 
 const tasksInCollection = (tasks) => {
     const result = tasks.reduce((acc, cur) => {
-        const { collectionName, description, createdAt, completed } = cur
+        const { collectionName, description, createdAt, completed, _id } = cur
         if (acc[collectionName]) {
-            acc[collectionName] = [...acc[collectionName], { description, createdAt, completed }]
+            acc[collectionName] = [...acc[collectionName], { description, createdAt, completed, _id }]
         } else {
-            acc[collectionName] = [{ description, createdAt, completed }]
+            acc[collectionName] = [{ description, createdAt, completed, _id }]
         }
         return acc
     }, {})

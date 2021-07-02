@@ -131,11 +131,25 @@ editDescription.addEventListener('click', async() => {
 
     console.log(body)
 
-    const response = await fetchFunction({
+    await fetchFunction({
         url: 'http://localhost:3000/edit/tasks/description',
         method: 'post',
         body,
         message: 'Sửa thành công',
         redirectTo: `http://localhost:3000/my-tasks-by/?boardName=${boardName}`
+    })
+})
+
+deleteDescription.addEventListener('click', async() => {
+    const _id = deleteDescription.value
+    const body = {
+        _id
+    }
+    await fetchFunction({
+        url: `http://localhost:3000/edit/tasks/delete`,
+        method: 'delete',
+        body,
+        message: 'Xóa thành công',
+        redirectTo: 'http://localhost:3000/my-tasks'
     })
 })

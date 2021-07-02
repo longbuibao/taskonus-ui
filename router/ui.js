@@ -105,7 +105,8 @@ router.get('/my-tasks', async(req, res) => {
                 time: ISOTime,
                 data,
                 username,
-                finalAvatar
+                finalAvatar,
+                _id
             })
         }
     } catch (error) {

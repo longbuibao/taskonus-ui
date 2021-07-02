@@ -70,10 +70,10 @@
 
                 <div>
                     <h2>
-                        <input type="text" id="oldBoardName" value="<%= data.boardName %>">
+                        <input type="text" id="oldBoardName_<%= _id %>" value="<%= data.boardName %>">
                     </h2>
-                    <button id="boardNameEdit"><i class="far fa-edit"></i></button>
-                    <button id="boardNameDelete"><i class="far fa-trash-alt"></i></button>
+                    <button data-old="<%= data.boardName %>" onclick="editTasks(this, 'boardName')" data-user-id="<%= _id %>" data-action="edit" data-body-needed=''><i class="far fa-edit"></i></button>
+                    <button data-old="<%= data.boardName %>" onclick="deleteTasks(this, 'boardName')" data-user-id="<%= _id %>" data-action="delete" data-body-needed=''><i class="far fa-trash-alt"></i></button>
                     <p>
                         Ngày tạo:
                         <%= time %>
@@ -89,12 +89,12 @@
                         <div class="style-button" style="position: relative; z-index: 1000;">
                             <div style="display: flex; flex-direction: row;">
                                 <div class="button">
-                                    <input id="oldCollectionName" style="min-width: fit-content;" type="text" value="<%= collectionName %>">
+                                    <input id="<%= collectionName %>_<%= _id %>" style="min-width: fit-content;" type="text" value="<%= collectionName %>">
                                 </div>
                                 <!-- <p class="icon" style="display: flex; flex-direction: column;"> -->
                                 <div>
-                                    <button id="editCollectionName"><i class="far fa-edit"></i></button>
-                                    <button id="deleteCollectionName"><i class="far fa-trash-alt"></i></button>
+                                    <button data-old="<%= collectionName %>" onclick="editTasks(this, 'collectionName')" data-user-id="<%= _id %>"><i class="far fa-edit"></i></button>
+                                    <button data-old="<%= collectionName %>" onclick="deleteTasks(this, 'collectionName')" data-user-id="<%=_id %>"><i class="far fa-trash-alt"></i></button>
                                 </div>
                                 <!-- </p> -->
                             </div>
@@ -109,13 +109,13 @@
                                             <%= `Ngày:${time.getDate()}/${time.getMonth() + 1}, Lúc: ${time.getHours()}:${time.getMinutes()}`%>
                                     </div>
                                     <div class="style-trang-gioi-thieu">
-                                        <input id="oldDescription" style="min-height: 20px;" type="text" name="" value="<%= task.description %>">
+                                        <input id="oldDescription_<%= task._id %>" style="min-height: 20px;" type="text" name="" value="<%= task.description %>">
                                     </div>
-                                    <input name="checkbox" type="checkbox" id="completed" <%=( task.completed) ? 'checked' : ''%> >
+                                    <input name="checkbox" type="checkbox" id="completed_<%= task._id %>" <%=( task.completed) ? 'checked ' : ' '%> >
                                     <label for="completed">Đã hoàn thành</label>
                                     <div class="fas-fa-ellipsis-h" style="display: flex; flex-direction: row; justify-content: center;margin-top: 5px;">
-                                        <button id="editDescription"><i class="far fa-edit" style="margin-top: 3px;"></i></button>
-                                        <button id="deleteDescription"><i class="far fa-trash-alt" style="margin-top: 3px;"></i></button>
+                                        <button onclick="editTasks(this, 'description')" data-task-id="<%= task._id %>" data-collection-name="<%= collectionName %>" data-user-id="<%= _id %>"><i class=" far fa-edit " style="margin-top: 3px; "></i></button>
+                                        <button onclick="deleteTasks(this, 'description')" data-task-id="<%= task._id %>" data-collection-name="<%= collectionName %>" data-user-id="<%= _id %>"><i class="far fa-trash-alt" style="margin-top: 3px;"></i></button>
                                     </div>
                                     <!--mục kế hoạch của mục Làm ĐN-ĐK-->
                                 </div>

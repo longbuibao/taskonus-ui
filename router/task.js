@@ -74,12 +74,14 @@ router.get('/my-tasks-by', async(req, res) => {
             time: ISOTime,
             data,
             username,
-            finalAvatar
+            finalAvatar,
+            _id
         })
-
-
     }
 })
+
+
+// ================================edit and delete route===============
 
 router.post('/edit/tasks/boardName', async(req, res) => {
     const { oldBoardName, newBoardName } = req.body
@@ -109,6 +111,7 @@ router.post('/edit/tasks/boardName', async(req, res) => {
 
 router.delete('/edit/tasks/boardName', async(req, res) => {
     const { boardName } = req.body
+
     const config = {
         headers: {
             Authorization: `Bearer ${req.cookies.authtoken}`
@@ -148,6 +151,7 @@ router.delete('/edit/tasks/collectionName', async(req, res) => {
             Authorization: `Bearer ${req.cookies.authtoken}`
         }
     }
+
     const response = await axios.delete(
         url + `edit/tasks/collectionName/?collectionName=${collectionName}&boardName=${newBoardName}`,
         config
@@ -160,21 +164,16 @@ router.delete('/edit/tasks/collectionName', async(req, res) => {
 })
 
 router.post('/edit/tasks/description', async(req, res) => {
-    const { oldData, newData, whereTo } = req.body
+    const { taskId, ...body } = req.body
+
     const config = {
         headers: {
             Authorization: `Bearer ${req.cookies.authtoken}`
         }
     }
 
-    const body = {
-        oldData,
-        newData,
-        whereTo
-    }
-
     const response = await axios.patch(
-        url + 'edit/tasks/description',
+        url + `tasks/${taskId}`,
         body,
         config
     )
@@ -182,7 +181,24 @@ router.post('/edit/tasks/description', async(req, res) => {
     if (response.status === 200) {
         res.status(200).send()
     } else res.status(400).send()
-
 })
 
+router.delete('/edit/tasks/delete', async(req, res) => {
+    const { _id } = req.body
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    const response = await axios.delete(
+        url + `tasks/${_id}`,
+        config
+    )
+
+    if (response.status === 200) {
+        res.status(200).send()
+    } else {
+        res.status(400).send()
+    }
+})
 module.exports = router
