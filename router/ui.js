@@ -99,14 +99,17 @@ router.get('/my-tasks', async(req, res) => {
                 boardName: boardAndCollection.boardName[index],
                 tasksFrom
             };
-
+            const isSelected = {
+                data: ''
+            }
             res.render('detailTask', {
                 boardAndCollection,
                 time: ISOTime,
                 data,
                 username,
                 finalAvatar,
-                _id
+                _id,
+                isSelected
             })
         }
     } catch (error) {

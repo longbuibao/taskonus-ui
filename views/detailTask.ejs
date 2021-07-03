@@ -17,18 +17,17 @@
                     <div class="btn-group">
                         <input type="text" class="form-control" name="" id="searchByBoardName" aria-describedby="helpId" placeholder="Tìm bảng">
                         <div class="btn btn-info" onclick="searchByBoardName()">Tìm</div>
-
                     </div>
                     <div id="link-to-boardname" style="display: none;">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <select class="custom-select" required>
-                        <option selected>Thứ tự mặc định</option>
-                        <option value="1">Nhiệm vụ đã hoàn thành</option>
-                        <option value="2">Thứ tự từ cũ đến mới</option>
-                        <option value="3">Thứ tự từ mới đến cũ</option>
+                    <select class="custom-select" id="filter-tasks" required onchange="redirectTo(this)" data-user-id="<%= _id %>">
+                        <option value="0" <%= isSelected.data == 0 ? 'selected' : '' %> >Thứ tự mặc định</option>
+                        <option value="1" <%= isSelected.data == 1 ? 'selected' : '' %> >Nhiệm vụ đã hoàn thành</option>
+                        <option value="2" <%= isSelected.data == 2 ? 'selected' : '' %> >Thứ tự từ cũ đến mới</option>
+                        <option value="3" <%= isSelected.data == 3 ? 'selected' : '' %> >Thứ tự từ mới đến cũ</option>
                     </select>
                 </div>
             </div>
@@ -65,12 +64,6 @@
                 <button>
                     <a href="/users/logout">Đăng xuất</a>
                 </button>
-                <div class="form-group" style="margin-top: 10px;">
-                    <div class="btn-group">
-                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Tìm kiếm task">
-                        <div class="btn btn-info">Tìm</div>
-                    </div>
-                </div>
             </div>
 
             <div class="overlay" style="display: none; position: fixed; top:0; right: 0; left: 0; bottom: 0; background-color:rgba(255,255,255,0); z-index: 0;"></div>

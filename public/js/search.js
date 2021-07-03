@@ -13,6 +13,7 @@ const searchByBoardName = async() => {
     const allBoardName = await getAllBoardName(url)
     if (allBoardName.length !== 0) {
         const linkElement = document.getElementById('link-to-boardname')
+        linkElement.innerHTML = ''
         allBoardName.forEach((element) => {
             let a = document.createElement('a')
             a.href = `http://localhost:3000/my-tasks-by/?boardName=${element.item}`
@@ -23,4 +24,27 @@ const searchByBoardName = async() => {
         })
         linkElement.style.display = 'block'
     } else alert('Không tìm thấy bảng này')
+}
+
+const redirectTo = (element) => {
+    const selected = document.getElementById('filter-tasks').value
+    const userId = element.getAttribute('data-user-id')
+    const boardName = document.getElementById(`oldBoardName_${userId}`).value
+    console.log(selected, boardName)
+    switch (selected) {
+        case '0':
+            window.location.href = `http://localhost:3000/my-tasks-by/?boardName=${boardName}`
+            break;
+        case '1':
+            window.location.href = `http://localhost:3000/my-tasks-by/?boardName=${boardName}&completed=true`
+            break;
+        case '2':
+            window.location.href = `http://localhost:3000/my-tasks-by/?boardName=${boardName}&sortBy=createdAt:asc`
+            break;
+        case '3':
+            window.location.href = `http://localhost:3000/my-tasks-by/?boardName=${boardName}&sortBy=createdAt:desc`
+            break;
+        default:
+            break;
+    }
 }

@@ -33,20 +33,45 @@ router.post('/tasks/create', async(req, res) => {
 })
 
 router.get('/my-tasks-by', async(req, res) => {
-    const { boardName } = req.query
+    const { boardName, sortBy, completed } = req.query
+    let newUrl = url
+    let isSelected = ''
+    if (!sortBy && !completed) {
+        newUrl += `tasks/?boardName=${boardName}`
+        isSelected = {
+            data: 0
+        }
+    }
+
+    if (sortBy) {
+        newUrl += `tasks/?boardName=${boardName}&sortBy=${sortBy}`
+        const parts = sortBy.split(':')
+        isSelected = {
+            data: parts[1] === 'desc' ? '3' : '2'
+        }
+    }
+
+    if (completed) {
+        newUrl += `tasks/?boardName=${boardName}&completed=${completed}`
+        isSelected = {
+            data: 1
+        }
+    }
+
+
+    console.log(newUrl)
+
     const config = {
         headers: {
             Authorization: `Bearer ${req.cookies.authtoken}`
         }
     }
     const tasksByBoardName = await axios.get(
-        url + `tasks/?boardName=${boardName}`,
+        newUrl,
         config
     )
 
-
     const { tasks, username, _id } = tasksByBoardName.data
-
 
     let avatar = await getUserAvatar(_id)
 
@@ -75,7 +100,8 @@ router.get('/my-tasks-by', async(req, res) => {
             data,
             username,
             finalAvatar,
-            _id
+            _id,
+            isSelected
         })
     }
 })
