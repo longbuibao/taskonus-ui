@@ -349,4 +349,8 @@ router.get('/test', (req, res) => {
     res.render('user')
 })
 
+router.get('/deadline', (req, res) => {
+    res.render('deadline')
+})
+
 module.exports = router
