@@ -48,3 +48,7 @@ const redirectTo = (element) => {
             break;
     }
 }
+
+const confirmDelete = () => {
+    confirm('Ban co that su muon xoa tai khoan?')
+}
