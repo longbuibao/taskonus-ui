@@ -29,4 +29,8 @@ router.get('/ui/detailTask', (_, res) => {
     res.render('detailTask')
 })
 
+router.get('/ui/deadline', (_, res) => {
+    res.render('deadline')
+})
+
 module.exports = router
