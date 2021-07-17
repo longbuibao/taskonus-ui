@@ -1,4 +1,4 @@
-<%- include('partials/deadlineHeader.ejs') %>
+<%- include('partials/thongkeHeader.ejs') %>
 <div class="notion-app">
     <!-- beign control -->
     <div class="control">
@@ -37,78 +37,40 @@
         <h5>Bảng của tôi</h5>
         <i class="fa addform fa-plus" data-toggle="modal" data-target="#modalName"></i>
       </div>
+
+      <!-- thống kê -->
+      <div class="statis">
+        <i class="fas fa-signal"></i>
+        <h5>Thống kê</h5>
+        <!-- <i class="fa addform fa-plus" data-toggle="modal" data-target="#modalName"></i> -->
+      </div>
     </div>
 
 <!-- begin-detail -->
     <div class="detail">
-  <div class="overlay" style="display: none; position: fixed; top:0; right: 0; left: 0; bottom: 0; background-color:rgba(255,255,255,0); z-index: 0;"></div>
-
-        <!--Đầu trang kế hoạch thiết kế-->
- <div class="kehoachthietke">
-
-   <div> 
-     <h2> Kế hoạch thiết kế</h2>
-     <p> Ngày tạo: 30/05/2021 10:25</p>
-   </div>
-   <div class="timkiem">
-     <input type="text" placeholder="Tìm kiếm">
-   </div>
- </div>
-
-     <!--Nội dung kế hoach thiết kế-->
-<div class="noi-dung-ke-hoach-thiet-ke">
-   <!--cần làm-->
-   
-<div class="thu-muc">       <!--thư mục-->
- 
-<div class="style-button" style="position: relative; z-index: 1000;">  
-<div class="button">Cần làm</div>
-<p class="icon">
-     <p class="fix-icon"> <i class="plus-can-lam fas fa-ellipsis-h"></i> </p>
-     <p class="fix-icon-add"> <i class=" fas fa-plus-circle"></i> </p>
-</p>
-<!-- popup mục cần làm -->
-<div class="popup-can-lam" style="display: none; background-color: antiquewhite; position:absolute; top: 30px; right: -45px; margin:5px; padding: 10px; z-index: 1111;">
-  <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Xóa</p>
-  <p style="border-bottom: 1px solid rgba(0,0,0,0.4); padding: 5px;"> <i class="fas fa-plus-circle"></i> Đổi tên</p>
-</div>
-
-<script>
-  var popup_plus_can_lam=document.querySelector(".plus-can-lam");
-  popup_plus_can_lam.onclick=function (){
-    document.querySelector(".popup-can-lam").style.display="";
-    overlay.style.display="";
-
-  };
- 
-  
-</script>
-</div>
-
-<div class="tien-do-ke-hoach">      <!--tiến độ kế hoạch-->
-  <div class="muc-ke-hoach">     <!--mục kế hoạch của mục Trang giới thiệu-->
-    <span>Trang giới thiệu</span>
-    <div>
-      <span><input type="checkbox"></span>
-      <span>Hạn deadline: 17/07/2021</span>
+        <div>
+            <h2>THỐNG KÊ TIẾN ĐỘ CÔNG VIỆC</h2>
+            <div>                    
+            </div>
+            <div class="grid-container">
+              <div class="item1">
+                <canvas id="bar-chart" width="600px" height="500"></canvas>
+              </div>
+              <div class="item2"> 
+                <div>
+                  <label for="name">Từ ngày:</label>
+                  <input type="date" id="deadline" name="deadline">
+                  <label for="name">Đến ngày:</label>
+                  <input type="date" id="deadline" name="deadline">
+                </div>                   
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+              </div>
+            </div>             
+        </div>
+        <div>
+            
+        </div>
     </div>
-  </div>
-
-</div>
-</div> <!-- đóng-cần làm-->
-
-  <!--thêm nhóm-->
-<div class="thu-muc">
-  <div class="them-nhom">           <!-- mục kế hoạch của thêm nhóm-->
-    <div class="icon-them-nhom"> <i class="plus fas fa-plus-circle"></i> </div>     <!--icon thêm nhóm-->
-    <div> <h5> Thêm nhóm </h5></div>
-  </div>
-</div> <!--đóng-thêm-nhóm-->
-
-
-   </div>
-    </div>
-</div>
 
 <!-- Modal add board -->
 <div class="modal fade" id="modalName" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -149,6 +111,58 @@
 </div>
 </div>
 
+<!-- biểu đồ tròn -->
+<script>
+var xValues = ["Hoàn thành", "Chưa hoàn thành"];
+// insert dữ liệu ở đây nè
+var yValues = [25,4];
+var barColors = [
+  "#b91d47",
+  "#1e7145"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Mức độ hoàn thành công việc"
+    }
+  }
+});
+</script>
+
+<!-- biểu đồ cột -->
+<script>
+new Chart(document.getElementById("bar-chart"), {
+  type: 'bar',
+  data: {
+  labels: ["Tháng 5","Tháng 6", "Tháng 7"], //đổ dl tháng ở đây
+  datasets: [
+      {
+      label: "Số task",
+      backgroundColor: ["#3e95cd", "#8e5ea2", "#e07a5f"],
+      data: [28,20,30,0] //đổ dl thống kê ở đây, số 0 ở cuối là mặc định nha
+      }
+  ]
+  },
+  options: {
+  legend: { display: false },
+  title: {
+      display: true,
+      text: 'Thống kê số task theo tháng'
+  }
+  }
+});
+</script>
+
 <script>
 var overlay=document.querySelector(".overlay");
 overlay.onclick=function(){
@@ -158,4 +172,4 @@ overlay.onclick=function(){
     overlay.style.display="none";
   }
 </script>
-<%- include('partials/deadlineFooter.ejs') %>
+<%- include('partials/thongkeFooter.ejs') %>

@@ -352,5 +352,8 @@ router.get('/test', (req, res) => {
 router.get('/deadline', (req, res) => {
     res.render('deadline')
 })
+router.get('/statis', (req, res) => {
+    res.render('thongke')
+})
 
 module.exports = router
