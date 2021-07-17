@@ -49,6 +49,6 @@ const redirectTo = (element) => {
     }
 }
 
-const confirmDelete = () => {
-    confirm('Ban co that su muon xoa tai khoan?')
+const confirmDelete = (input) => {
+    confirm(`bạn có thực sự muốn xóa ${input}?`)
 }
