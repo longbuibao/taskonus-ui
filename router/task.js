@@ -59,8 +59,6 @@ router.get('/my-tasks-by', async(req, res) => {
     }
 
 
-    console.log(newUrl)
-
     const config = {
         headers: {
             Authorization: `Bearer ${req.cookies.authtoken}`
@@ -230,7 +228,6 @@ router.delete('/edit/tasks/delete', async(req, res) => {
 
 router.get('/search/tasks', async(req, res) => {
     const { boardName } = req.query
-    console.log(boardName)
     const config = {
         headers: {
             Authorization: `Bearer ${req.cookies.authtoken}`
@@ -252,7 +249,6 @@ router.get('/search/tasks', async(req, res) => {
 })
 
 router.post('/search/display-result', async(req, res) => {
-    console.log(req.body)
     res.render('main')
 })
 

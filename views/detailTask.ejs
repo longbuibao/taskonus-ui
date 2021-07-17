@@ -116,6 +116,9 @@
                                     </div>
                                     <input name="checkbox" type="checkbox" id="completed_<%= task._id %>" <%=( task.completed) ? 'checked ' : ' '%> >
                                     <label for="completed">Đã hoàn thành</label>
+                                    <p>Deadline:
+                                        <%= new Date(task.deadline) %>
+                                    </p>
                                     <div class="fas-fa-ellipsis-h" style="display: flex; flex-direction: row; justify-content: center;margin-top: 5px;">
                                         <button onclick="editTasks(this, 'description')" data-task-id="<%= task._id %>" data-collection-name="<%= collectionName %>" data-user-id="<%= _id %>"><i class=" far fa-edit " style="margin-top: 3px; "></i></button>
                                         <button onclick="deleteTasks(this, 'description')" data-task-id="<%= task._id %>" data-collection-name="<%= collectionName %>" data-user-id="<%= _id %>"><i class="far fa-trash-alt" style="margin-top: 3px;"></i></button>
@@ -152,6 +155,10 @@
                             <div class="form-group">
                                 <label for="name">Tên task</label>
                                 <input type="text" name="description" class="form-control" placeholder="Nhập tên task của thư mục (công việc 1,...)">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Hạn deadline:</label>
+                                <input type="datetime-local" id="deadline" name="deadline">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
