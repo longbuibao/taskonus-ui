@@ -344,16 +344,55 @@ router.get('/users/delete', async(req, res) => {
     }
 })
 
+router.post('/thong-ke', async(req, res) => {
+    console.log(req.body)
+    const config = {
+        headers: {
+            Authorization: `Bearer ${req.cookies.authtoken}`
+        }
+    }
+    try {
+        const response = await axios.get(
+            'http://localhost:8000/users/me',
+            config
+        )
+        const responseTasks = await axios.get(
+            `http://localhost:8000/tasks`,
+            config
+        )
 
-router.get('/test', (req, res) => {
-    res.render('user')
+        const countTasks = (await axios.get(
+            `http://localhost:8000/count-tasks/?deadlineFrom=${req.body.deadlineFrom}&deadlineTo=${req.body.deadlineTo}`,
+            config
+        )).data
+
+        const tasks = responseTasks.data.tasks
+
+        const boardAndCollection = taskUtils.getBoardNameAndCollectionName(tasks)
+
+        const _id = response.data._id
+        const avatar = await getUserAvatar(_id)
+
+        const finalAvatar = avatar.data.data ? Buffer.from(avatar.data.data).toString('base64') : ''
+
+        if (response.status === 200) {
+            return res.render('thongke', {
+                data: response.data,
+                boardAndCollection,
+                finalAvatar,
+                countTasks
+            })
+        } else {
+            res.render('error-something-wrong', {
+                data: {
+                    message: 'ui.js ln 199'
+                }
+            })
+        }
+    } catch (error) {
+        res.render('error-something-wrong', { data: { message: error.message } })
+    }
 })
 
-router.get('/deadline', (req, res) => {
-    res.render('deadline')
-})
-router.get('/statis', (req, res) => {
-    res.render('thongke')
-})
 
 module.exports = router

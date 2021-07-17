@@ -1,245 +1,39 @@
-@charset "utf-8";
-body {
-    margin: 0;
-    font-family:'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-}
-
-.notion-app {
-	display: flex;
-}
-.control {
-    position: relative;
-    z-index: 99;
-    background: #ECDDD7;
-    transition: box-shadow 300ms ease-in 0s;
-    width: 240px;
-}
-.detail {
-	flex-grow: 1;
-    flex-shrink: 1;
+.control .statis {
     display: flex;
-    flex-direction: column;
-    background: white;
-    z-index: 1;
-    height: 100vh;
-    max-height: 100%;
-    width: 771px;
-}
-.detail h2{
-    text-align: center;
-    padding: 20px 0;
-    color: #264653;
-}
-.control .i-user{
-	display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-    background-color: #ECDDD7;
-    padding: 8px 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-.thumb{
-	width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #B22222;
-    background-position: center;
-    margin-right: 12px;
-}
-.control .se-fi{
-	margin: 25px 8px;
-}
-
-.control .favorite{
-    display: flex;
-    /* align-items: center; */
-    margin-bottom: 12px;
+    margin: 20px 0;
     background-color: #ECDDD7;
     padding: 8px 16px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.control .favorite .fa-star{
-    color: #FEBF10;
-    font-size: 20px;
-}
-
-.control .favorite h5{
-    margin: 0 10px;
-}
-
-.control .board{
-    display: flex;
-    margin:100px 0;
-    background-color: #ECDDD7;
-    padding: 8px 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.control .board .fa-clipboard-list{
-    color: brown;
-    font-size: 23px;
-    
-}
-
-.control .board h5{
-    margin: 0 10px;
-    flex: 1;
-}
-
-.control .board .fa-plus{
-    color: #212529;
-    font-size: 25px;
-    
-}
-
-.control .statis{
-    display: flex;
-    margin:100px 0;
-    background-color: #ECDDD7;
-    padding: 8px 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.control .statis h5{
+.control .statis h5 {
     padding-left: 10px;
     cursor: pointer;
 }
 
-.control .statis .fa-signal{
+.control .statis .fa-signal {
     color: brown;
     font-size: 25px;
 }
 
-.kehoachthietke{
-    display: flex;
-    margin-left: 70px;
-    margin-top: 70px;
-    margin-bottom: 20px;
-}
-.timkiem{
+.timkiem {
     margin-left: 740px;
     margin-top: 38px;
 }
-.button{
-    width: 100px;
-    height: 40px;
-    color: white;
-    border-radius: 10px;
-    background-color: #5B6D5B;
-    text-align: center;
-    padding-top: 7px;
-    margin-right: 20px;
-}
-.style-button{
-    display: flex;
-    margin-bottom: 10px;
-}
-.thu-muc{
-    width: 20%;
-    float: left; 
-    margin-right: 5%;
-}
-.noi-dung-ke-hoach-thiet-ke{
-    width: 90%;
-    margin:0 auto;
 
-}
-.muc-ke-hoach{
-    width: 240px;
-    background-color: #fffdf8;
-    box-shadow: 1px 1px 1px #7b7c7e;
-    border-radius: 5px;
-    padding: 5px 5px;
-
-}
-
-.tien-do-ke-hoach{
-    width: 250px;
-    padding: 10px 5px 10px 5px;
-    background-color: #fae9e2;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px #7b7c7e;
-}
-.icon{
-    font-size: 20px;
-    margin-right: 80px;
-}
-.style-DN-DK{
-    display: flex;
-    padding-left: 10px;
-}
-.style-trang-gioi-thieu{
-    display: flex;
-    padding-left: 10px;
-    margin-top: 8px;
-}
-.fas-fa-ellipsis-h{
-    font-size: 20px;
-    margin-left: 80px;
-}
-#fix{
-    margin-left: 45px;
-}
-.far-fa-comment-alt{
-    font-size: 20px;
-    padding-left: 10px;
-}
-.trang-dang-lam{
-    width: 250px;
-    padding: 10px 5px 10px 5px;
-    background-color: #fae9e2;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px #7b7c7e;
-}
-#fix-muc-dang-lam{
-    margin-left: 40px;
-}
-.style-thao-tac{
-    display: flex;
-    padding-left: 10px;
-    margin-top: 8px;
-}
-#fix-trang-chu{
-    margin-left: 100px;
-}
-.icon-them-nhom{
-    font-size: 20px;
-    margin-right: 10px;
-}
-.them-nhom{
-    display: flex;
-}
-.fix-icon{
-    font-size: 20px;
-    margin-right: 10px;
-}
-.fix-icon-add{
-    font-size: 20px;
-}
-#fix-icon-muc-hoan-thanh{
-    margin-right: 5px ;
-}
-
-.style-DN-DK{
-    display: block;
-}
-
-.board .addform{
+.board .addform {
     cursor: pointer;
 }
 
+
 /***************/
-.grid-container{
+
+.grid-container {
     display: grid;
     grid-template-columns: auto auto;
 }
-.grid-container .item1{
+
+.grid-container .item1 {
     grid-column: 1/2;
     padding: 50px 0 0 20px;
 }

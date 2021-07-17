@@ -52,6 +52,20 @@
                     </a>
                     <% }) %>
             </div>
+            <div class="statis">
+                <i class="fas fa-signal"></i>
+                <h5>Thống kê</h5>
+                <!-- <i class="fa addform fa-plus" data-toggle="modal" data-target="#modalName"></i> -->
+            </div>
+            <div>
+                <form action="/thong-ke" method="POST">
+                    <label for="name">Từ ngày:</label><br>
+                    <input type="date" id="deadline" name="deadlineFrom">
+                    <label for="name">Đến ngày:</label>
+                    <input type="date" id="deadline" name="deadlineTo">
+                    <input type="submit">
+                </form>
+            </div>
         </div>
 
 
